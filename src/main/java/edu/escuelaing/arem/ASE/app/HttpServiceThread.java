@@ -19,10 +19,10 @@ import org.reflections.Reflections;
 
 public class HttpServiceThread implements Runnable {
 	
-	private static HashMap<String, MethodHandler> listaURLHandler;
-	private static Socket clientSocket;
-	private static ServerSocket serverSocket = null;
-	private static String address = "";
+    private static HashMap<String, MethodHandler> listaURLHandler;
+    private static Socket clientSocket;
+    private static ServerSocket serverSocket = null;
+    private static String address = "";
     private static BufferedReader in;
     private Socket receiver;
     
