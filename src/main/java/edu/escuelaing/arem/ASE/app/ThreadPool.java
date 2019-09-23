@@ -8,7 +8,7 @@ import java.util.concurrent.Executors;
 
 public class ThreadPool {
     public static ServerSocket serverSocket= null;
-    public static ExecutorService executorService = Executors.newFixedThreadPool(10);
+    public static ExecutorService executorService = Executors.newFixedThreadPool(50);
         
 
     public static void start() throws IOException {
