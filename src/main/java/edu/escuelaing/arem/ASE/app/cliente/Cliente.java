@@ -8,31 +8,25 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class Cliente {
-    public static ExecutorService pool;
     
     public static void main(String[] args) throws Exception { 
-     URLReader[] readers= new URLReader[101];
-     try{
-      pool=Executors.newFixedThreadPool(3); 
-      for(int i=0; i<10; i++){
-          readers[i]=new URLReader(args);
-          pool.execute(readers[i]);
-      }
-      
-      while(!pool.isTerminated()){
+     URLReader[] readers= new URLReader[201];
+     long suma=0;
+     int n=200;
+     for(int i=0;i<n; i++){
+        readers[i]=new URLReader(args);
+        readers[i].start();
+        readers[i].join();
           
-      }
-     }catch(Exception e){
-         e.getMessage();
-     }finally{
-      long suma=0;
-      for(int i=0; i<10; i++){
-          System.out.println(readers[i].tiempoPromedio);
-          suma+=readers[i].tiempoPromedio;
+       }
+     for(int i=0; i<n; i++){
+        System.out.println(readers[i].tiempoPromedio);
+        suma+=readers[i].tiempoPromedio;
       }
      
-      System.out.println("El tiempo promedio es: "+(suma/10));
-     } 
-    } 
+      System.out.println("El tiempo promedio en segundos es: "+((double)suma/3000));
+
+      
     
+    }
 }

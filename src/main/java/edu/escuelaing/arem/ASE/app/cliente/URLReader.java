@@ -4,12 +4,12 @@ import java.net.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class URLReader implements Runnable{ 
+public class URLReader extends Thread{ 
   public String[] args;
   public long tiempoPromedio;
  
-  public URLReader(String[] p){ 
-      this.args=p;
+  public URLReader(String[] args){ 
+      this.args=args;
     } 
   
   @Override
@@ -22,10 +22,8 @@ public class URLReader implements Runnable{
               String inputLine = null; 
               long tiempoFinal = System.currentTimeMillis();
               tiempoPromedio=(tiempoFinal-tiempoInicial);
-              System.out.println(tiempoPromedio);
               while ((inputLine = reader.readLine()) != null) { 
                     //System.out.println(inputLine);
-                    //System.out.println("Funciona");
                } 
          } catch (IOException x) { 
                  System.err.println(x); 

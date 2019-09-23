@@ -8,17 +8,17 @@ import java.util.concurrent.Executors;
 
 public class ThreadPool {
     public static ServerSocket serverSocket= null;
-    public static ExecutorService executorService = Executors.newCachedThreadPool();
+    public static ExecutorService executorService = Executors.newFixedThreadPool(1);
         
 
     public static void start() throws IOException {
-        for (;;) {
+        
             serverSocket = HttpService.runServer();
             Socket clientSocket = HttpService.receiveRequest(serverSocket);
             executorService.execute(new HttpServiceThread(clientSocket));
             serverSocket.close();
 
-        }
+        
     }
 
 }
