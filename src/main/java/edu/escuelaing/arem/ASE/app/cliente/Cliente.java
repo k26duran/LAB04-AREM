@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Cliente {
     
-    private static ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(100);
+    private static ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(60);
     public static URLReader[] readers= new URLReader[201];
     
     public static void main(String[] args) throws Exception { 
