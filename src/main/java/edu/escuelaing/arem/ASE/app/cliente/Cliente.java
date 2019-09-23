@@ -1,37 +1,41 @@
 package edu.escuelaing.arem.ASE.app.cliente;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.URL;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 public class Cliente {
     
     private static ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(5);
+    public static URLReader[] readers= new URLReader[201];
     
     public static void main(String[] args) throws Exception { 
-     URLReader[] readers= new URLReader[201];
-     long suma=0;
-     int n=10;
-     for(int i=0;i<n; i++){
-        URLReader u=new URLReader(args);
-        executor.execute(u);
-        
+     int n=60;
+     URL url= new URL(args[0]);
+     for(int i=0;i<n; i++){    
+        readers[i]=new URLReader(url);
+        executor.execute(readers[i]);
         //readers[i].join();
-          
        }
-     /**
-     for(int i=0; i<n; i++){
-        System.out.println(readers[i].tiempoPromedio);
-        suma+=readers[i].tiempoPromedio;
-      }
-     
-      System.out.println("El tiempo promedio en segundos es: "+((double)suma/3000));
-**/
-      
-    
+       executor.shutdown();
+       try {
+            if (!executor.awaitTermination(80000, TimeUnit.MILLISECONDS)) {
+                executor.shutdownNow();        
+            } 
+        } catch (InterruptedException e) {
+            executor.shutdownNow();
+        }
+        calculateProm(n);
     }
+    
+     public static void calculateProm(int n){
+        long suma=0;
+        for(int i=0; i<n; i++){
+           System.out.println(readers[i].tiempoPromedio);
+           suma+=readers[i].tiempoPromedio;
+         }
+         System.out.println("El tiempo promedio en segundos es: "+((double)suma/(n*1000)));
+     }
+    
 }
