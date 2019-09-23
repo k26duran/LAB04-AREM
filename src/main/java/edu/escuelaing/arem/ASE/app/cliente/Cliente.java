@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Cliente {
     
-    private static ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(100);
+    private static ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(80);
     public static URLReader[] readers= new URLReader[201];
     
     public static void main(String[] args) throws Exception { 
@@ -37,5 +37,4 @@ public class Cliente {
          }
          System.out.println("El tiempo promedio en segundos es: "+((double)suma/(n*1000)));
      }
-    
 }

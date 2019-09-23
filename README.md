@@ -4,7 +4,7 @@
 
 El servidor concurrente capaz de entregar páginas html e imágenes tipo JPG. Igualmente el servidor provee un framework IoC para la construcción de aplicaciones web a partir de POJOS.  aplicación Web desplegada en Heroku.
 
-En este laboratorio hice un servidor concurrente usando ThreadPoolExecutor y un cliente AWS. Para poder observar la diferencia entre el uso de la cantidad de hilos que soporta el servidor, las pruebas se realizaron cambiando esta cantidad de hilos y realizando múltiples solicitudes al servidor web.
+En este laboratorio hice un servidor concurrente usando ThreadPoolExecutor y un cliente AWS. Para poder observar la diferencia entre el uso de la cantidad de hilos que soporta el servidor las pruebas se realizaron cambiando esta cantidad de hilos y realizando múltiples solicitudes en paralelo al servidor web.
 ### Prerequisitos
 
 * Java 1.8
@@ -14,21 +14,30 @@ En este laboratorio hice un servidor concurrente usando ThreadPoolExecutor y un 
 El objetivo de las siguientes pruebas es medir el desempeño del servidor web variando el número de peticiones y el número de hilos que soporta solicitando tanto recursos estáticos como dinámicos.
 
 La siguiente gráfica muestra los resultados obtenidos haciendo solicitudes a un contenido estático, variando la cantidad de hilos, primero con 1 hilo, luego 10 hilos, y por último 50 hilos.
+
 ![](https://github.com/k26duran/LAB04-AREM/blob/master/img/tablaEstatico.PNG)
+
 ![](https://github.com/k26duran/LAB04-AREM/blob/master/img/contenidoEstatico.PNG)
 
-En una escala más grande, es decir no haciendo peticiones de 1 a 10, sino de 10 en 10, los resultados obtenidos fueron los evidenciados en la siguiente tabla.
+En una escala más grande, es decir no haciendo peticiones de 1 a 10 en paralelo, sino de 10 en 10, los resultados obtenidos fueron los evidenciados en la siguiente tabla.
+
 ![](https://github.com/k26duran/LAB04-AREM/blob/master/img/tablaEstatico2.PNG)
+
 ![](https://github.com/k26duran/LAB04-AREM/blob/master/img/contenidoEstatico2.PNG)
 
 La siguiente gráfica muestra los resultados obtenidos haciendo solicitudes a un contenido dinámico, variando la cantidad de hilos, primero con 1 hilo, luego 10 hilos, y por último 50 hilos.
+
 ![](https://github.com/k26duran/LAB04-AREM/blob/master/img/tablaDinamico.PNG)
+
 ![](https://github.com/k26duran/LAB04-AREM/blob/master/img/contenidoDinamico.PNG)
 
-En una escala más grande, es decir no haciendo peticiones de 1 a 10, sino de 10 en 10, los resultados obtenidos fueron los evidenciados en la siguiente tabla.
+En una escala más grande, es decir no haciendo peticiones de 1 a 10 en paralelo, sino de 10 en 10, los resultados obtenidos fueron los evidenciados en la siguiente tabla.
+
 ![](https://github.com/k26duran/LAB04-AREM/blob/master/img/tablaDinamico2.PNG)
+
 ![](https://github.com/k26duran/LAB04-AREM/blob/master/img/contenidoDinamico2.PNG)
 
+En los resultados podems observar que no importa que se haga la solicitud hacia un recurso estático o dinámico, el tiempo de respuesta es casi el mismo. En ambas gráficas se puede observar que la tendencia es a demorarse más tiempo entre más peticiones en paralelo se hagan.
 
 ## Ejecutar
 ### Descagar proyecto, sus dependencias y compilar
