@@ -12,12 +12,12 @@ public class ThreadPool {
         
 
     public static void start() throws IOException {
-        
+        for(;;){
             serverSocket = HttpService.runServer();
             Socket clientSocket = HttpService.receiveRequest(serverSocket);
             executorService.execute(new HttpServiceThread(clientSocket));
             serverSocket.close();
-
+        }
         
     }
 
